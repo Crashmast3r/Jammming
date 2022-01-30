@@ -1,4 +1,5 @@
 import React from 'react';
+import Preview from '../Preview/Preview';
 import './Track.css';
 
 class Track extends React.Component {
@@ -30,6 +31,10 @@ class Track extends React.Component {
                         <h3>{this.props.track.name}</h3>
                         <p>{this.props.track.artist} | {this.props.track.album}</p>
                     </div>
+                    <Preview id={this.props.track.id} 
+                            preview={this.props.track.preview_url}
+                            onPlay={this.props.onPlay}
+                            onStop={this.props.onStop} />
                     {this.renderAction()}
                 </div>);
     }
