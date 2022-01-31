@@ -4,7 +4,6 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 import Spotify from '../../util/Spotify';
 import './App.css';
-var isPlaying;
 
 class App extends React.Component {
   constructor(props) {
@@ -19,9 +18,6 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
-    this.onPreviewPlay = this.onPreviewPlay.bind(this);
-    this.onPreviewStop = this.onPreviewStop.bind(this);
-    this.previewElement = React.createRef();
   }
 
   addTrack(track) {
@@ -38,22 +34,6 @@ class App extends React.Component {
     let trackToRemove = tracks.findIndex((element) => element.id === track.id);
     tracks.splice(trackToRemove, 1);
     this.setState({ playlistTracks: tracks });
-  }
-
-  onPreviewPlay(song) {
-    if (isPlaying) {
-      this.onPreviewStop(isPlaying);
-    };
-    console.log(isPlaying);
-    song.play();
-    isPlaying = song;
-    console.log(isPlaying);
-    setTimeout(() => {isPlaying = 'none'}, 30000);
-  }
-
-  onPreviewStop(song) {
-    song.pause();
-    //isPlaying = 'none';
   }
 
   updatePlaylistName(name) {
